@@ -2,16 +2,16 @@
 
 With the following improvements:
 
-- more general url parsing--can take huggingface or civitai urls in full.
-- ability to cancel download (automatically deletes incomplete file)
-- automatic file path scanning so you can download to the correct directories when the node runs
+- Generalized URL parsing. Can take huggingface or civitai URLs in full.
   - Any of the following will work:
-     - https://civitai.com/models/1234567?modelVersionId=2345678
+     - `https://civitai.com/models/1234567?modelVersionId=2345678`
      - 2345678
-     - https://civitai.com/api/download/models/2345678?type=Model&format=SafeTensor
-     - https://civitai.com/api/download/models/2345678
-- added overwrite toggle for civitai downloader
-- 
+     - `https://civitai.com/api/download/models/2345678?type=Model&format=SafeTensor`
+     - `https://civitai.com/api/download/models/2345678`
+- Ability to cancel download at any time (automatically deletes incomplete file)
+- Automatic file path scanning so you can download to the correct directories when the node runs
+- Added overwrite toggle for Civitai downloader
+
 
 
 ----------------------------------
@@ -119,3 +119,4 @@ For support, questions, or contributions, please open an issue on the GitHub rep
 
 
 GNU Affero General Public License v3.0
+
