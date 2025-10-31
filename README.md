@@ -5,25 +5,12 @@ With the following improvements:
 - Generalized URL parsing. Can take huggingface or civitai URLs in full.
   - Any of the following will work:
      - `https://civitai.com/models/1234567?modelVersionId=2345678`
-     - 2345678
+     - `2345678`
      - `https://civitai.com/api/download/models/2345678?type=Model&format=SafeTensor`
      - `https://civitai.com/api/download/models/2345678`
 - Ability to cancel download at any time (automatically deletes incomplete file)
 - Automatic file path scanning so you can download to the correct directories when the node runs
 - Added overwrite toggle for Civitai downloader
-
-
-
-----------------------------------
-----------------------------------
-----------------------------------
-----------------------------------
-original readme below
-----------------------------------
-----------------------------------
-----------------------------------
-----------------------------------
-
 
 
 ## Model Downloader for ComfyUI
@@ -36,7 +23,7 @@ original readme below
 
 
 ## Introduction
-This project provides an experimental model downloader node for ComfyUI, designed to simplify the process of downloading and managing models in environments with restricted access or complex setup requirements. It aims to enhance the flexibility and usability of ComfyUI by enabling seamless integration and management of machine learning models.
+This project provides an improved experimental model downloader node for ComfyUI, designed to simplify the process of downloading and managing models in environments with restricted access or complex setup requirements. It aims to enhance the flexibility and usability of ComfyUI by enabling seamless integration and management of machine learning models.
 
 ## Features
 - **Easy Model Downloading**: Simplify the process of downloading models directly within the ComfyUI environment.
@@ -119,4 +106,5 @@ For support, questions, or contributions, please open an issue on the GitHub rep
 
 
 GNU Affero General Public License v3.0
+
 
