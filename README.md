@@ -93,6 +93,7 @@ To use the model downloader within your ComfyUI environment:
 Roadmap (tentative)
 - [ ] Unify nodes
 - [ ] Generalize input parsing to accomodate path separators for lists of models
+- [ ] Implement resume partial download in case of failure
   
 
 
@@ -110,6 +111,7 @@ For support, questions, or contributions, please open an issue on the GitHub rep
 
 
 GNU Affero General Public License v3.0
+
 
 
 
