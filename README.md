@@ -94,6 +94,7 @@ Roadmap (tentative)
 - [ ] Unify nodes
 - [ ] Generalize input parsing to accomodate path separators for lists of models
 - [ ] Implement resume partial download in case of failure
+- [ ] Remove debugging code
   
 
 
@@ -111,6 +112,7 @@ For support, questions, or contributions, please open an issue on the GitHub rep
 
 
 GNU Affero General Public License v3.0
+
 
 
 
