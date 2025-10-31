@@ -1,4 +1,32 @@
-# Model Downloader for ComfyUI
+# Fork of ciri/comfyui-model-downloader 
+
+With the following improvements:
+
+- more general url parsing--can take huggingface or civitai urls in full.
+- ability to cancel download (automatically deletes incomplete file)
+- automatic file path scanning so you can download to the correct directories when the node runs
+  - Any of the following will work:
+     - https://civitai.com/models/1234567?modelVersionId=2345678
+     - 2345678
+     - https://civitai.com/api/download/models/2345678?type=Model&format=SafeTensor
+     - https://civitai.com/api/download/models/2345678
+- added overwrite toggle for civitai downloader
+- 
+
+
+----------------------------------
+----------------------------------
+----------------------------------
+----------------------------------
+original readme below
+----------------------------------
+----------------------------------
+----------------------------------
+----------------------------------
+
+
+
+## Model Downloader for ComfyUI
 
 <div align="center">
     <picture>
@@ -18,22 +46,30 @@ This project provides an experimental model downloader node for ComfyUI, designe
 ## Available Nodes
 
 ### HF Downloader
-![HF|250](assets/hf-downloader.png?raw=true)
+<img width="778" height="525" alt="image" src="https://github.com/user-attachments/assets/a869c34d-03ec-4e5e-b5b7-85d6b08922ac" />
+
 
 Parameters:
 
-* repo_id: Hugging Face repo ID
+* model_url: Hugging Face repo ID or URL
 * filename: filename to download from the repository
 * save_dir: destination directory
 * overwrite: overwrite existing file if it exists
 
 ### CivitAI Downloader
-![CivitAI|250](assets/civitai-downloader.png?raw=true)
+<img width="745" height="594" alt="image" src="https://github.com/user-attachments/assets/35482d5b-a1af-4bf4-a37e-e07de1eeb09c" />
+
 
 Parameters:
-* model_id: CivitAI model ID
+* model_url: CivitAI model ID or URL
 * token_id: CivitAI token ID
 * save_dir: destination directory
+
+
+## Better paths 
+
+<img width="867" height="788" alt="image" src="https://github.com/user-attachments/assets/fcd78de3-be5f-4f76-a0b4-43d2d33b73c5" />
+
 
 ## Auto Model Finder (Experimental)
 
@@ -45,18 +81,12 @@ Troubleshooting: this node is experimental and may not work as expected. If it d
 
 ## Installation
 
-### Via ComfyUI Manager (Recommended)
-1. Open ComfyUI Manager
-2. Select Custom Nodes Manager
-3. Search for "ComfyUI Model Downloader"
-4. Install
-
 ### Via Git Clone
 
 Clone the repository or download the extension directly into your ComfyUI project's `custom_nodes` folder:
 
 ```
-git clone https://github.com/ciri/model-downloader-comfyui.git
+git clone https://github.com/fuselayer/model-downloader-comfyui.git
 ```
 
 ## Usage
@@ -86,5 +116,6 @@ Contributions are welcome! Please:
 For support, questions, or contributions, please open an issue on the GitHub repository page. Contributions are welcome!
 
 ## License
+
 
 GNU Affero General Public License v3.0
