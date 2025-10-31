@@ -1,13 +1,13 @@
 from ..base_downloader import BaseModelDownloader, get_model_dirs
 from ..download_utils import DownloadManager
+from .hf_utils import parse_hf_url
 
 class HFDownloader(BaseModelDownloader):     
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {       
-                "repo_id": ("STRING", {"multiline": False, "default": "runwayml/stable-diffusion-v1-5"}),
-                "filename": ("STRING", {"multiline": False, "default": "v1-5-pruned-emaonly.ckpt"}),
+                "model_url": ("STRING", {"multiline": False, "default": "https://huggingface.co/runwayml/stable-diffusion-v1-5/blob/main/v1-5-pruned-emaonly.ckpt"}),
                 "local_path": (get_model_dirs(),),
                 
             },
@@ -22,9 +22,11 @@ class HFDownloader(BaseModelDownloader):
         
     FUNCTION = "download"
 
-    def download(self, repo_id, filename, local_path, node_id, overwrite=False, local_path_override=""):
+    def download(self, model_url, local_path, node_id, overwrite=False, local_path_override=""):
+        repo_id, filename = parse_hf_url(model_url)
+        
         if not repo_id or not filename:
-            print(f"Missing required values: repo_id='{repo_id}', filename='{filename}'")
+            print(f"Invalid Hugging Face URL: {model_url}")
             return {}
         
         final_path = local_path_override if local_path_override else local_path
@@ -53,8 +55,7 @@ class HFAuthDownloader(HFDownloader):  # Inherit from HFDownloader to share meth
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "repo_id": ("STRING", {"default": "runwayml/stable-diffusion-v1-5"}),
-                "filename": ("STRING", {"default": "v1-5-pruned.ckpt"}),
+                "model_url": ("STRING", {"default": "https://huggingface.co/runwayml/stable-diffusion-v1-5/blob/main/v1-5-pruned-emaonly.ckpt"}),
                 "local_path": ("STRING", {"default": "checkpoints"}),
                 "hf_token": ("STRING", {
                     "default": "", 
@@ -65,16 +66,21 @@ class HFAuthDownloader(HFDownloader):  # Inherit from HFDownloader to share meth
             }
         }
 
-    def download_model(self, repo_id, filename, local_path, hf_token, overwrite):
-        print(f'downloading model {repo_id} {filename} {local_path} {hf_token} {overwrite}')
+    def download_model(self, model_url, local_path, hf_token, overwrite):
+        print(f'downloading model {model_url} {local_path} {hf_token} {overwrite}')
         try:
             # Always use token for auth version
             import huggingface_hub
             huggingface_hub.login(token=hf_token)
+
+            repo_id, filename = parse_hf_url(model_url)
+
+            if not repo_id or not filename:
+                print(f"Invalid Hugging Face URL: {model_url}")
+                return {}
             
             result = self.download(
-                repo_id=repo_id,
-                filename=filename,
+                model_url=model_url,
                 local_path=local_path,
                 node_id=self.node_id,
                 overwrite=overwrite

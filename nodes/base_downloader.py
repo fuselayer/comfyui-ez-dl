@@ -7,10 +7,44 @@ def get_base_dir():
     models_dir = os.path.join(base_dir, 'models')
     return models_dir
 
-def get_model_dirs():
+def get_model_dirs(recursive=True, max_depth=3):
+    """
+    Get model directories.
+    If recursive=True, returns all subdirectories up to max_depth levels deep.
+    Returns paths relative to the models directory (e.g., 'loras', 'loras/SDXL', 'loras/flux').
+    """
     models_dir = get_base_dir()
-    model_dirs = [d for d in os.listdir(models_dir) if os.path.isdir(os.path.join(models_dir, d))]
-    return model_dirs
+    
+    if not os.path.exists(models_dir):
+        return ["models"]
+    
+    model_dirs = []
+    
+    def scan_directory(current_path, relative_path="", depth=0):
+        if depth > max_depth:
+            return
+        
+        try:
+            items = os.listdir(current_path)
+            for item in sorted(items):
+                item_path = os.path.join(current_path, item)
+                if os.path.isdir(item_path) and not item.startswith('.'):
+                    # Build relative path
+                    if relative_path:
+                        rel_path = os.path.join(relative_path, item)
+                    else:
+                        rel_path = item
+                    
+                    model_dirs.append(rel_path)
+                    # Recursively scan subdirectories
+                    scan_directory(item_path, rel_path, depth + 1)
+        except (PermissionError, OSError):
+            pass  # Skip directories we can't access
+    
+    scan_directory(models_dir)
+    
+    # Return sorted list, or default if empty
+    return sorted(model_dirs) if model_dirs else ["models"]
 
 class BaseModelDownloader:
     RETURN_TYPES = ()
@@ -33,7 +67,6 @@ class BaseModelDownloader:
                 "max": 100
             })
 
-
     def prepare_download_path(self, local_path, filename):
         # Just create the base directory, don't include the filename
         full_path = os.path.join(get_base_dir(), local_path)
@@ -49,7 +82,11 @@ class BaseModelDownloader:
                 return {}
             
             kwargs['save_path'] = save_path
-            download_func(**kwargs)
+            kwargs['filename'] = filename  # CRITICAL: Pass filename to download function
+            kwargs['node_id'] = self.node_id
+            result = download_func(**kwargs)
+            if result is None:
+                return {}
             self.update_status("Complete!", 100)
             return {}
         except Exception as e:
