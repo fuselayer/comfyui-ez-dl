@@ -8,7 +8,7 @@ With the following improvements:
      - `2345678`
      - `https://civitai.com/api/download/models/2345678?type=Model&format=SafeTensor`
      - `https://civitai.com/api/download/models/2345678`
-    - Any of the following will work for Huggingface:
+  - and for Huggingface:
      - `https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Lightning-4steps-V2.0.safetensors`
      - `https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Lightning-4steps-V2.0.safetensors?download=true`
      - `https://huggingface.co/lightx2v/Qwen-Image-Lightning/blob/main/Qwen-Image-Lightning-4steps-V2.0.safetensors`
@@ -112,6 +112,7 @@ For support, questions, or contributions, please open an issue on the GitHub rep
 
 
 GNU Affero General Public License v3.0
+
 
 
 
