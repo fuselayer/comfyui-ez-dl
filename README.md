@@ -90,6 +90,11 @@ To use the model downloader within your ComfyUI environment:
 4. Execute the node to start the download process.
 5. To avoid repeated downloading, make sure to bypass the node after you've downloaded a model.
 
+Roadmap (tentative)
+- [ ] Unify nodes
+- [ ] Generalize input parsing to accomodate path separators for lists of models
+  
+
 
 ## Contributing
 Contributions are welcome! Please:
@@ -105,6 +110,7 @@ For support, questions, or contributions, please open an issue on the GitHub rep
 
 
 GNU Affero General Public License v3.0
+
 
 
 
