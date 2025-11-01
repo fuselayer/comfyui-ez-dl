@@ -2,7 +2,7 @@
 
 With the following improvements:
 
-- Generalized URL parsing. Can take huggingface or civitai URLs in full, and in various other forms. Basically any valid link to a model, api, page, or otherwise *should* work.
+- **Generalized URL parsing**. Can take huggingface or civitai URLs in full, and in various other forms. Basically any valid link to a model, api, page, or otherwise *should* work.
   - Any of the following will work for Civitai:
      - `https://civitai.com/models/1234567?modelVersionId=2345678`
      - `2345678`
@@ -112,6 +112,7 @@ For support, questions, or contributions, please open an issue on the GitHub rep
 
 
 GNU Affero General Public License v3.0
+
 
 
 
