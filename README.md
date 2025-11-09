@@ -5,7 +5,7 @@ With the following improvements:
 - **Ability to cancel download** at any time (automatically deletes incomplete file)
 - **Automatic file path scanning** so you can download to the correct directories when the node runs
 - **Added overwrite toggle for Civitai downloader**
-- **Civarchive (formerly civitaiarchive) support added v 1.0.1
+- **Civarchive (formerly civitaiarchive) support added v 1.0.1**
 - **Generalized URL parsing**. Can take huggingface or civitai URLs in full, and in various other forms. Basically any valid link to a model, api, page, or otherwise *should* work.
   - Any of the following will work for Civitai:
      - `https://civitai.com/models/1234567?modelVersionId=2345678`
@@ -111,6 +111,7 @@ For support, questions, or contributions, please open an issue on the GitHub rep
 
 
 GNU Affero General Public License v3.0
+
 
 
 
